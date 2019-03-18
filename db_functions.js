@@ -280,8 +280,6 @@ var get_instructor_schedules = (instructor_id) => {
 }
 
 var assign_instructor_session = (obj) => {
-    console.log(obj);
-
     var values_vars = ',?'.repeat(Object.keys(obj).length - 1);
 
     return new Promise((resolve, reject) => {
@@ -299,8 +297,6 @@ var assign_instructor_session = (obj) => {
 }
 
 var assign_learner_session = (obj) => {
-    console.log(obj);
-
     var values_vars = ',?'.repeat(Object.keys(obj).length - 1);
 
     return new Promise((resolve, reject) => {
@@ -354,6 +350,19 @@ var deleteGeneralData = (obj, tablename) => {
     })
 }
 
+var getEditLearner = (obj) => {
+    return new Promise((resolve, reject) => {
+        var query = `SELECT learnerLastName, learnerFirstName, learnPrimaryEmail, otherEmail, specialty, role, comments FROM learner WHERE learnerID = ${obj.Learners}`;
+        connection.query(query, function(err, queryResult, fields) {
+            if (err) {
+                reject(err);
+            } else {
+                resolve(queryResult);
+            }
+        });
+    });
+}
+
 
 
 
@@ -374,5 +383,6 @@ module.exports = {
     get_KLRs,
     assign_instructor_session,
     assign_learner_session,
-    get_all_instructors_teaching_day
+    get_all_instructors_teaching_day,
+    getEditLearner
 };

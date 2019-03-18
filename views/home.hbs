@@ -12,20 +12,11 @@ table {
     text-align: center;
 }
 
-
-th, td {
-    text-align: center;
-    padding: 5px;
-}
-
-tr:nth-child(odd) {}
 </style>
 <body onbeforeunload="return">
     <img style="position: absolute; height: 102px; width: 250px; z-index: 1000;" src="/imgs/cst_logo.png" alt="CST Logo">
 
 <table>
-    <tr>
-        <td>
         <center>
         <div>
             <h1> CST Course Scheduler </h1>
@@ -37,17 +28,10 @@ tr:nth-child(odd) {}
             </div>
             {{!-- {{/if}} --}}
         </center>
-        </td>
-    </tr>
 </table>
 <table>
-    {{!-- <tr background="/image/home_page.jpg"> --}}
-    <tr style="background-image:url('/image/home_page.jpg');background-repeat:no-repeat;background-size:cover;">
-        <td>
-        <center>
             <h2> Instructor Schedule Access</h2>
-        </center>
-
+        <div id="thing">
         <div id="login__wrapper">
             <div class="form__group">
                 <form action="/instructor_schedule" method="post">
@@ -62,19 +46,13 @@ tr:nth-child(odd) {}
             </div>
         </div>
 
-        </td>
-
-        <td>
         {{#unless loggedIn}}
         {{> loginForm }}
         {{/unless}}
         {{#if loggedIn}}
-        <center>
             <a href="/logout"><button class='submit_button shadow'>Log Out</button></a>
-        </center>
         {{/if}}
-        </td>
-    </tr>
+        </div>
 </table>
 
 </body>
