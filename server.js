@@ -36,6 +36,20 @@ app.use(express.static(__dirname + "/public"));
 app.set("views", __dirname + "/views");
 hbs.registerPartials(__dirname + "/views/partials");
 
+
+//register.helper
+hbs.registerHelper('formatDate', (text) => {
+    var d = new Date(text),
+        month = '' + (d.getMonth() + 1),
+        day = '' + d.getDate(),
+        year = d.getFullYear();
+
+    if (month.length < 2) month = '0' + month;
+    if (day.length < 2) day = '0' + day;
+
+    return [year, month, day].join('-');
+});
+
 // body parser allows for easy reading from forms
 app.use(bodyParser.json());
 app.use(
@@ -44,6 +58,33 @@ app.use(
     })
 );
 
+hbs.registerHelper('getProperty', function(context, key) {
+    return context[key];
+});
+
+hbs.registerHelper('getInstructorNameFromID', function(context, key) {
+    for (i = 0; i < context.length; i++) {
+        if (context[i].instructorID == key) {
+            return context[i].instructorLastName + ', ' + context[i].instructorFirstName;
+        }
+    }
+});
+
+hbs.registerHelper('getKLRNameFromID', function(context, key) {
+    for (i = 0; i < context.length; i++) {
+        if (context[i].klrID == key) {
+            return context[i].klrName;
+        }
+    }
+});
+
+hbs.registerHelper('getSessionTypeFromID', function(context, key) {
+    for (i = 0; i < context.length; i++) {
+        if (context[i].courseTypeID == key) {
+            return context[i].Type;
+        }
+    }
+});
 
 
 // route to homepage

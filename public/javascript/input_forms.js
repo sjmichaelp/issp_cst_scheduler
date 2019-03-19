@@ -28,6 +28,19 @@ function addTeachCourse(){
     addDate("End Date","instructorLeaves","instructorLeavesEnd");
   }
 
+  function removetag(idiv){
+    idiv.removeChild(idiv.lastElementChild);
+    idiv.removeChild(idiv.lastElementChild);
+  };
+
+  function removeDate(idiv){
+    idiv.parentNode.removeChild(idiv.previousElementSibling);
+    idiv.parentNode.removeChild(idiv.previousElementSibling);
+    idiv.parentNode.removeChild(idiv.previousElementSibling);
+  };
+
+
+
   function addDate(ilabel,idiv,iname){
     var warpper = document.createElement("div");
     var Startdiv = document.createElement("div");    
@@ -49,16 +62,9 @@ function addTeachCourse(){
     slabel.style.position = 'relative';
     slabel.style.marginTop = '20px';
 
-    
-    del.setAttribute('href','#');
-    del.setAttribute('onclick',"removetag();return false;");
-    del.setAttribute('class','form__label');
-    del.setAttribute('style','font-size:small;');
-    del.innerHTML = "Delete";
-    
 
     Startdiv.appendChild(slabel);  
-    Startdiv.appendChild(sinput);                                                     
+    Startdiv.appendChild(sinput);                                               
     document.getElementById(idiv).appendChild(Startdiv);
     
     
